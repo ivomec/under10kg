@@ -318,7 +318,7 @@ function populateContent(data) {
                 <div class="info-grid">
                     <div class="info-card" style="grid-column:1/-1; border-top:none; padding: 10px;">
                         <h3>🗺️ 네이버 지도로 위치 확인하기</h3>
-                        <iframe src="https://new-map.naver.com/p/entry/place/16083453?c=15.00,0,0,0,dh" 
+                        <iframe src="https://map.naver.com/v5/embed/16083453?c=126.8543059,35.1318082,15,0,0,0,dh" 
                                 width="100%" 
                                 height="450" 
                                 style="border:0; border-radius: 15px;" 
@@ -339,27 +339,26 @@ function populateContent(data) {
     }
 
     if (data.healthCheck) {
-        document.getElementById('healthcheck-header-title-large').innerHTML = data.healthCheck.headerTitle;
-        document.getElementById('healthcheck-header-subtitle-large').innerHTML = data.healthCheck.headerSubtitle;
-        document.getElementById('large-dog-explanation-content').innerHTML = data.healthCheck.largeDogExplanation;
-        document.getElementById('healthcheck-explanation-title-large').innerHTML = data.healthCheck.explanation.title;
-        document.getElementById('healthcheck-explanation-content-large').innerHTML = (data.healthCheck.explanation.content || []).map(p => `<p>${p}</p>`).join('');
+        document.getElementById('healthcheck-header-title-small').innerHTML = data.healthCheck.headerTitle;
+        document.getElementById('healthcheck-header-subtitle-small').innerHTML = data.healthCheck.headerSubtitle;
+        document.getElementById('healthcheck-explanation-title-small').innerHTML = data.healthCheck.explanation.title;
+        document.getElementById('healthcheck-explanation-content-small').innerHTML = (data.healthCheck.explanation.content || []).map(p => `<p>${p}</p>`).join('');
         
-        renderHealthCheckPackages('large', data.healthCheck.packagesWith4Dx);
+        renderHealthCheckPackages('small', data.healthCheck.packagesWith4Dx);
 
-        const btnWith4DxLarge = document.getElementById('btn-healthcheck-with-4dx-large');
-        const btnWithout4DxLarge = document.getElementById('btn-healthcheck-without-4dx-large');
-        
-        btnWith4DxLarge.addEventListener('click', () => {
-            renderHealthCheckPackages('large', data.healthCheck.packagesWith4Dx);
-            btnWith4DxLarge.classList.add('active');
-            btnWithout4DxLarge.classList.remove('active');
+        const btnWith4DxSmall = document.getElementById('btn-healthcheck-with-4dx-small');
+        const btnWithout4DxSmall = document.getElementById('btn-healthcheck-without-4dx-small');
+
+        btnWith4DxSmall.addEventListener('click', () => {
+            renderHealthCheckPackages('small', data.healthCheck.packagesWith4Dx);
+            btnWith4DxSmall.classList.add('active');
+            btnWithout4DxSmall.classList.remove('active');
         });
 
-        btnWithout4DxLarge.addEventListener('click', () => {
-            renderHealthCheckPackages('large', data.healthCheck.packagesWithout4Dx);
-            btnWithout4DxLarge.classList.add('active');
-            btnWith4DxLarge.classList.remove('active');
+        btnWithout4DxSmall.addEventListener('click', () => {
+            renderHealthCheckPackages('small', data.healthCheck.packagesWithout4Dx);
+            btnWithout4DxSmall.classList.add('active');
+            btnWith4DxSmall.classList.remove('active');
         });
     }
 
@@ -381,29 +380,29 @@ function populateContent(data) {
     }
 
     if(data.extraction) {
-        document.getElementById('extraction-header-title-large').innerHTML = data.extraction.headerTitle;
-        document.getElementById('extraction-header-subtitle-large').innerHTML = data.extraction.headerSubtitle;
-        document.getElementById('extraction-costs-large').innerHTML = data.extraction.costs.map(cost => {
-            const priceInfo = cost.prices.map(p => `<div class="price-item"><span class="price-label">${p.label.replace(' (10kg 이상)','')}</span> <span class="price-value">${formatPrice(p.value)}</span></div>`).join('');
+        document.getElementById('extraction-header-title-small').innerHTML = data.extraction.headerTitle;
+        document.getElementById('extraction-header-subtitle-small').innerHTML = data.extraction.headerSubtitle;
+        document.getElementById('extraction-costs-small').innerHTML = data.extraction.costs.map(cost => {
+            const priceInfo = cost.prices.map(p => `<div class="price-item"><span class="price-label">${p.label}</span> <span class="price-value">${formatPrice(p.value)}</span></div>`).join('');
             return `<div class="cost-card"><h3>${cost.title}</h3><div class="description" style="flex-grow:1;">${cost.description}</div><div class="price-wrapper" style="text-align: right;">${priceInfo}</div></div>`;
         }).join('');
-        document.getElementById('extraction-explanation-title-large').innerHTML = data.extraction.explanation.title;
-        document.getElementById('extraction-explanation-content-large').innerHTML = (data.extraction.explanation.content || []).map(p => `<p>${p}</p>`).join('');
+        document.getElementById('extraction-explanation-title-small').innerHTML = data.extraction.explanation.title;
+        document.getElementById('extraction-explanation-content-small').innerHTML = (data.extraction.explanation.content || []).map(p => `<p>${p}</p>`).join('');
     }
   
     if(data.addons) {
-        document.getElementById('addons-header-title-large').innerHTML = data.addons.headerTitle;
-        document.getElementById('addons-header-subtitle-large').innerHTML = data.addons.headerSubtitle;
-        document.getElementById('addons-costs-large').innerHTML = data.addons.costs.map(cost => `
+        document.getElementById('addons-header-title-small').innerHTML = data.addons.headerTitle;
+        document.getElementById('addons-header-subtitle-small').innerHTML = data.addons.headerSubtitle;
+        document.getElementById('addons-costs-small').innerHTML = data.addons.costs.map(cost => `
             <div class="cost-card" style="border-top-color:${cost.borderColor}">
                 <h3 style="color:${cost.titleColor}">${cost.title}</h3>
-                 <div class="price-wrapper" style="text-align: right; border-top: none; padding-top: 0;">
+                <div class="price-wrapper" style="text-align: right; border-top: none; padding-top: 0;">
                     ${(cost.prices || []).map(p => `<div class="price-item"><span class="price-label">${p.label}</span> <span class="price-value">${p.value}</span></div>`).join('')}
                 </div>
             </div>
         `).join('');
-        document.getElementById('addons-explanation-title-large').innerHTML = data.addons.explanation.title;
-        document.getElementById('addons-explanation-content-large').innerHTML = (data.addons.explanation.content || []).map(p => `<p>${p}</p>`).join('');
+        document.getElementById('addons-explanation-title-small').innerHTML = data.addons.explanation.title;
+        document.getElementById('addons-explanation-content-small').innerHTML = (data.addons.explanation.content || []).map(p => `<p>${p}</p>`).join('');
     }
   
     if(data.nerve) {
