@@ -52,13 +52,13 @@ document.addEventListener('DOMContentLoaded', () => {
       "healthCheck": {
         "headerTitle": "🩺✨ 우리 댕댕이 맞춤! 안심 건강검진 ✨🩺",
         "headerSubtitle": "💖 안전한 마취를 위한 첫걸음! 🌈 10kg 미만 아이들을 위한 플랜입니다! 💖",
-        "packagesWith4Dx": [
-          { "borderColor": "#4db6ac", "title": "🍼 1세 미만 퍼피 안심 플랜", "items": ["👩‍⚕️ 신체검사", "🩸 재채혈", "🔬 혈구검사 (CBC)", "🧪 혈액화학검사 (7종)", "⚡ 전해질검사", "🩻 흉부 엑스레이 (3컷)", "🩺 혈압 측정", "🦠 4Dx 키트검사"], "originalPrice": 283800, "discountPrice": 199000 },
-          { "borderColor": "#ffd54f", "title": "💪 7세 미만 성견 안심 플랜", "items": ["👩‍⚕️ 신체검사", "🩸 재채혈", "🔬 혈구검사 (CBC)", "🧪 혈액화학검사 (12종)", "⚡ 전해질검사", "🩻 엑스레이 (5컷)", "🩺 혈압 측정", "🔥 염증수치검사 (CRP)", "❤️ 심전도 검사 (ECG)", "🚽 소변검사", "🦠 4Dx 키트검사"], "originalPrice": 433800, "discountPrice": 299000 },
-          { "borderColor": "#ff8a65", "title": "👑 7세 이상 성견 안심 플랜", "items": ["👩‍⚕️ 신체검사", "🩸 재채혈", "🔬 혈구검사 (CBC)", "🧪 혈액화학검사 (12종)", "⚡ 전해질검사", "🩻 엑스레이 (5컷)", "🩺 혈압 측정", "🔥 염증수치검사 (CRP)", "❤️ 심전도 검사 (ECG)", "🚽 소변검사", "🩺 복부 정밀초음파", "🦋 갑상선 호르몬 검사 (T4)", "콩팥 기능 검사 (SDMA)", "🦠 4Dx 키트검사"], "originalPrice": 599800, "discountPrice": 439000 },
-          { "borderColor": "#ba68c8", "title": "💎 7세 이상 성견 VIP 안심 플랜", "items": ["👩‍⚕️ 신체검사", "🩸 재채혈", "🔬 혈구검사 (CBC)", "🧪 혈액화학검사 (12종)", "⚡ 전해질검사", "🩻 엑스레이 (5컷)", "🩺 혈압 측정", "🔥 염증수치검사 (CRP)", "❤️ 심전도 검사 (ECG)", "🚽 소변검사", "🩺 복부 정밀초음파", "🦋 갑상선 호르몬 검사 (T4)", "콩팥 기능 검사 (SDMA)", "👁️ 안과 종합검진", "🦠 4Dx 키트검사"], "originalPrice": 694800, "discountPrice": 489000 }
+        "packagesWithHeartworm": [
+          { "borderColor": "#4db6ac", "title": "🍼 1세 미만 퍼피 안심 플랜", "items": ["👩‍⚕️ 신체검사", "🩸 재채혈", "🔬 혈구검사 (CBC)", "🧪 혈액화학검사 (7종)", "⚡ 전해질검사", "🩻 흉부 엑스레이 (3컷)", "🩺 혈압 측정", "🦠 심장사상충 키트검사"], "originalPrice": 283800, "discountPrice": 199000 },
+          { "borderColor": "#ffd54f", "title": "💪 7세 미만 성견 안심 플랜", "items": ["👩‍⚕️ 신체검사", "🩸 재채혈", "🔬 혈구검사 (CBC)", "🧪 혈액화학검사 (12종)", "⚡ 전해질검사", "🩻 엑스레이 (5컷)", "🩺 혈압 측정", "🔥 염증수치검사 (CRP)", "❤️ 심전도 검사 (ECG)", "🚽 소변검사", "🦠 심장사상충 키트검사"], "originalPrice": 433800, "discountPrice": 299000 },
+          { "borderColor": "#ff8a65", "title": "👑 7세 이상 성견 안심 플랜", "items": ["👩‍⚕️ 신체검사", "🩸 재채혈", "🔬 혈구검사 (CBC)", "🧪 혈액화학검사 (12종)", "⚡ 전해질검사", "🩻 엑스레이 (5컷)", "🩺 혈압 측정", "🔥 염증수치검사 (CRP)", "❤️ 심전도 검사 (ECG)", "🚽 소변검사", "🩺 복부 정밀초음파", "🦋 갑상선 호르몬 검사 (T4)", "콩팥 기능 검사 (SDMA)", "🦠 심장사상충 키트검사"], "originalPrice": 599800, "discountPrice": 439000 },
+          { "borderColor": "#ba68c8", "title": "💎 7세 이상 성견 VIP 안심 플랜", "items": ["👩‍⚕️ 신체검사", "🩸 재채혈", "🔬 혈구검사 (CBC)", "🧪 혈액화학검사 (12종)", "⚡ 전해질검사", "🩻 엑스레이 (5컷)", "🩺 혈압 측정", "🔥 염증수치검사 (CRP)", "❤️ 심전도 검사 (ECG)", "🚽 소변검사", "🩺 복부 정밀초음파", "🦋 갑상선 호르몬 검사 (T4)", "콩팥 기능 검사 (SDMA)", "👁️ 안과 종합검진", "🦠 심장사상충 키트검사"], "originalPrice": 694800, "discountPrice": 489000 }
         ],
-        "packagesWithout4Dx": [
+        "packagesWithoutHeartworm": [
           { "borderColor": "#4db6ac", "title": "🍼 1세 미만 퍼피 플랜", "items": ["👩‍⚕️ 신체검사", "🩸 재채혈", "🔬 혈구검사 (CBC)", "🧪 혈액화학검사 (7종)", "⚡ 전해질검사", "🩻 흉부 엑스레이 (3컷)", "🩺 혈압 측정"], "originalPrice": 244800, "discountPrice": 160000 },
           { "borderColor": "#ffd54f", "title": "💪 7세 미만 성견 플랜", "items": ["👩‍⚕️ 신체검사", "🩸 재채혈", "🔬 혈구검사 (CBC)", "🧪 혈액화학검사 (12종)", "⚡ 전해질검사", "🩻 엑스레이 (5컷)", "🩺 혈압 측정", "🔥 염증수치검사 (CRP)", "❤️ 심전도 검사 (ECG)", "🚽 소변검사"], "originalPrice": 388800, "discountPrice": 260000 },
           { "borderColor": "#ff8a65", "title": "👑 7세 이상 성견 플랜", "items": ["👩‍⚕️ 신체검사", "🩸 재채혈", "🔬 혈구검사 (CBC)", "🧪 혈액화학검사 (12종)", "⚡ 전해질검사", "🩻 엑스레이 (5컷)", "🩺 혈압 측정", "🔥 염증수치검사 (CRP)", "❤️ 심전도 검사 (ECG)", "🚽 소변검사", "🩺 복부 정밀초음파", "🦋 갑상선 호르몬 검사 (T4)", "콩팥 기능 검사 (SDMA)"], "originalPrice": 554800, "discountPrice": 399000 },
@@ -265,8 +265,8 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
         }
 
-        const with4dxBtn = document.getElementById('btn-healthcheck-with-4dx');
-        const without4dxBtn = document.getElementById('btn-healthcheck-without-4dx');
+        const withHeartwormBtn = document.getElementById('btn-healthcheck-with-heartworm');
+        const withoutHeartwormBtn = document.getElementById('btn-healthcheck-without-heartworm');
         const container = document.getElementById('healthcheck-packages');
 
         const renderPackages = (packages) => {
@@ -283,18 +283,18 @@ document.addEventListener('DOMContentLoaded', () => {
             `).join('');
         };
         
-        renderPackages(data.packagesWith4Dx); // 기본값
+        renderPackages(data.packagesWithHeartworm); // 기본값
 
-        if (with4dxBtn && without4dxBtn) {
-            with4dxBtn.addEventListener('click', () => {
-                renderPackages(data.packagesWith4Dx);
-                with4dxBtn.classList.add('active');
-                without4dxBtn.classList.remove('active');
+        if (withHeartwormBtn && withoutHeartwormBtn) {
+            withHeartwormBtn.addEventListener('click', () => {
+                renderPackages(data.packagesWithHeartworm);
+                withHeartwormBtn.classList.add('active');
+                withoutHeartwormBtn.classList.remove('active');
             });
-            without4dxBtn.addEventListener('click', () => {
-                renderPackages(data.packagesWithout4Dx);
-                without4dxBtn.classList.add('active');
-                with4dxBtn.classList.remove('active');
+            withoutHeartwormBtn.addEventListener('click', () => {
+                renderPackages(data.packagesWithoutHeartworm);
+                withoutHeartwormBtn.classList.add('active');
+                withHeartwormBtn.classList.remove('active');
             });
         }
     }
