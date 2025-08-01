@@ -1,10 +1,3 @@
-/*
-  [v6.8 최종 업데이트 내역]
-  - UI 개선: 추가처치 탭 및 계산기의 추가처치 항목에 이모티콘을 추가하여 가독성 및 통일성 향상
-  - UI 개선: 건강검진 및 스케일링 패키지 항목을 이모티콘과 함께 세련된 스타일로 변경
-  - UI 개선: '모니터링' 선택 시 가독성을 높이기 위해 배경색 및 글자색 강조 로직 수정
-  - 기능 수정: 전체 비용 내역 표시에 건강검진 및 스케일링 비용을 별도 항목으로 분리
-*/
 document.addEventListener('DOMContentLoaded', () => {
     const hospitalData = {
       "main": {
@@ -58,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       "healthCheck": {
         "headerTitle": "🩺✨ 우리 댕댕이 맞춤! 안심 건강검진 ✨🩺",
-        "headerSubtitle": "💖 안전한 마취를 위한 첫걸음! 🌈 20kg 미만 아이들을 위한 플랜입니다! 💖",
+        "headerSubtitle": "💖 안전한 마취를 위한 첫걸음! 🌈 10kg 미만 아이들을 위한 플랜입니다! 💖",
         "packagesWith4Dx": [
           { "borderColor": "#4db6ac", "title": "🍼 1세 미만 퍼피 안심 플랜", "items": ["👩‍⚕️ 신체검사", "🩸 재채혈", "🔬 혈구검사 (CBC)", "🧪 혈액화학검사 (7종)", "⚡ 전해질검사", "🩻 흉부 엑스레이 (3컷)", "🩺 혈압 측정", "🦠 4Dx 키트검사"], "originalPrice": 283800, "discountPrice": 199000 },
           { "borderColor": "#ffd54f", "title": "💪 7세 미만 성견 안심 플랜", "items": ["👩‍⚕️ 신체검사", "🩸 재채혈", "🔬 혈구검사 (CBC)", "🧪 혈액화학검사 (12종)", "⚡ 전해질검사", "🩻 엑스레이 (5컷)", "🩺 혈압 측정", "🔥 염증수치검사 (CRP)", "❤️ 심전도 검사 (ECG)", "🚽 소변검사", "🦠 4Dx 키트검사"], "originalPrice": 433800, "discountPrice": 299000 },
@@ -86,65 +79,58 @@ document.addEventListener('DOMContentLoaded', () => {
         "headerSubtitle": "💖 사랑과 정성을 담아! 🌈 체중별 합리적인 혜택가로 안내합니다! 💖",
         "packages": [
           { "borderColor": "#ff7eb9", "title": "🐶 5kg 미만 🐶", "items": ["💧 술 전 산소 처치", "💧 술 전 수액 처치", "💉 도입 마취(프로포폴)", "😴 호흡 마취 Isoflurane (마무리까지)", "📸 전체 치과 X-ray (10장 이상 꼼꼼 촬영!)", "🧼 스케일링", "💎 폴리싱 – Airflow 시술 (반짝반짝 광택 마무리!)"], "originalPrice": 512000, "discountPrice": 239000 },
-          { "borderColor": "#ffc107", "title": "🐕 5kg ~ 10kg 미만 🐕", "items": ["💧 술 전 산소 처치", "💧 술 전 수액 처치", "💉 도입 마취(프로포폴)", "😴 호흡 마취 Isoflurane (마무리까지)", "📸 전체 치과 X-ray (10장 이상 꼼꼼 촬영!)", "🧼 스케일링", "💎 폴리싱 – Airflow 시술 (반짝반짝 광택 마무리!)"], "originalPrice": 603000, "discountPrice": 299000 },
-          { "borderColor": "#20c997", "title": "🐕‍🦺 10kg ~ 15kg 미만 🐕‍🦺", "items": ["💧 술 전 산소 처치", "💧 술 전 수액 처치", "💉 도입 마취(프로포폴)", "😴 호흡 마취 Isoflurane (마무리까지)", "📸 전체 치과 X-ray (10장 이상 꼼꼼 촬영!)", "🧼 스케일링", "💎 폴리싱 – Airflow 시술 (반짝반짝 광택 마무리!)"], "originalPrice": 704000, "discountPrice": 388000 },
-          { "borderColor": "#4dabf7", "title": "🐾 15kg ~ 20kg 미만 🐾", "items": ["💧 술 전 산소 처치", "💧 술 전 수액 처치", "💉 도입 마취(프로포폴)", "😴 호흡 마취 Isoflurane (마무리까지)", "📸 전체 치과 X-ray (10장 이상 꼼꼼 촬영!)", "🧼 스케일링", "💎 폴리싱 – Airflow 시술 (반짝반짝 광택 마무리!)"], "originalPrice": 795000, "discountPrice": 438000 },
-          { "borderColor": "#845ef7", "title": "듬직한 20kg 이상", "items": ["💧 술 전 산소 처치", "💧 술 전 수액 처치", "💉 도입 마취(프로포폴)", "😴 호흡 마취 Isoflurane (마무리까지)", "📸 전체 치과 X-ray (10장 이상 꼼꼼 촬영!)", "🧼 스케일링", "💎 폴리싱 – Airflow 시술 (반짝반짝 광택 마무리!)"], "originalPrice": 936000, "discountPrice": 488000 }
+          { "borderColor": "#ffc107", "title": "🐕 5kg ~ 10kg 미만 🐕", "items": ["💧 술 전 산소 처치", "💧 술 전 수액 처치", "💉 도입 마취(프로포폴)", "😴 호흡 마취 Isoflurane (마무리까지)", "📸 전체 치과 X-ray (10장 이상 꼼꼼 촬영!)", "🧼 스케일링", "💎 폴리싱 – Airflow 시술 (반짝반짝 광택 마무리!)"], "originalPrice": 603000, "discountPrice": 299000 }
         ],
         "explanation": { "title": "💡 필독! 혜택 적용 비용 안내 💡", "content": [ "저희 금호동물병원에서는 아이의 <strong>안전을 💖최우선💖</strong>으로 생각해요. 그래서 최근 <strong>✅ 저희 병원에서 직접 마취 전 혈액검사</strong>를 진행해서, 아이의 건강 상태를 저희 의료진이 완벽하게 파악하고 있는 경우! 감사의 마음을 담아 <strong>👑혜택가👑</strong>를 적용해 드리고 있답니다.", "다른 병원에서 검사를 받으셨거나 사정상 검사를 못 하셨어도 괜찮아요! 물론 안전한 치과 치료가 가능합니다. 다만, 이 경우 <strong>10만원이 추가</strong>되는 점, 보호자님의 너른 양해를 부탁드려요. 🙏", "<strong>🚨 잠깐!</strong> 안내된 비용은 스케일링과 기본 처치 비용이에요. 아이의 구강 상태에 따라 발치, 신경치료, 약 처방 등 추가 치료가 필요할 수 있어요. 이 경우, 꼭! <strong>보호자님과 충분히 상의 후 진행</strong>하니 걱정 마세요! 😉" ] }
       },
       "extraction": {
         "headerTitle": "🦷😿 우리 댕댕이 아픈 치아 수술비용 😿🦷",
-        "costsSmall": {
-            "headerSubtitle": "❤️ 아이의 고통을 덜어주는 수술 비용을 투명하게 안내해요 (<10kg) ❤️",
-            "items": [
-                { "title": "🦷 기본 발치", "prices": [{ "label": "뿌리 1개", "value": 22000 }, { "label": "뿌리 2개(작은 어금니)", "value": 66000 }, { "label": "뿌리 3개, 대구치", "value": 88000 }, {"label": "열육치(PM4)", "value": 88000}] },
-                { "title": "🔪 수술 발치", "prices": [{ "label": "뿌리 1개", "value": 44000 }, { "label": "뿌리 2개", "value": 120000 }, { "label": "뿌리 3개/대구치", "value": 220000 }, {"label": "열육치(PM4)", "value": 220000}] },
-                { "title": "💪 송곳니 수술 발치", "prices": [{ "label": "상악 (위턱)", "value": 220000 }, { "label": "하악 (아래턱)", "value": 270000 }, {"label": "강아지 대구치", "value": 220000}] },
-                { "title": "🍼 유치 발치", "prices": [{ "label": "일반 유치", "value": 22000 }, { "label": "유치 송곳니(X-ray 없이)", "value": 22000 }, { "label": "유치 송곳니(X-ray 포함)", "value": 33000 }, { "label": "유치 송곳니(수술 발치)", "value": 66000 }] },
-                { "title": "⚡ 특수 발치 및 처치", "prices": [{ "label": "치아흡수 - 뿌리 1개", "value": 44000 }, { "label": "치아흡수 - 뿌리 2개", "value": 88000 }, { "label": "치아흡수 - 뿌리 3개", "value": 140000 }, { "label": "함치성낭 제거술", "value": 220000 }] },
-                { "title": "🦷 잔존치근 제거", "prices": [{ "label": "뿌리 1개", "value": 55000 }, { "label": "뿌리 2개", "value": 120000 }, { "label": "구개측(어금니)", "value": 160000 }, { "label": "상악 송곳니", "value": 250000 }, { "label": "하악 송곳니", "value": 300000 }] },
-                { "title": "🍑 잇몸 종양", "prices": [{ "label": "1cm 이하", "value": 110000 }, { "label": "1cm 이상", "value": 220000 }, {"label": "조직검사(1 site)", "value": 170000}]},
-                { "title": "🔬 기타 수술", "prices": [{ "label": "항생제 감수성 검사(1 site)", "value": 143000 }, { "label": "함치성 치낭 제거술", "value": 220000 }] }
-            ]
-        },
+        "headerSubtitle": "❤️ 아이의 고통을 덜어주는 수술 비용을 투명하게 안내해요 (<10kg) ❤️",
+        "items": [
+            { "title": "🦷 기본 발치", "prices": [{ "label": "뿌리 1개", "value": 22000 }, { "label": "뿌리 2개(작은 어금니)", "value": 66000 }, { "label": "뿌리 3개, 대구치", "value": 88000 }, {"label": "열육치(PM4)", "value": 88000}] },
+            { "title": "🔪 수술 발치", "prices": [{ "label": "뿌리 1개", "value": 44000 }, { "label": "뿌리 2개", "value": 120000 }, { "label": "뿌리 3개/대구치", "value": 220000 }, {"label": "열육치(PM4)", "value": 220000}] },
+            { "title": "💪 송곳니 수술 발치", "prices": [{ "label": "상악 (위턱)", "value": 220000 }, { "label": "하악 (아래턱)", "value": 270000 }, {"label": "강아지 대구치", "value": 220000}] },
+            { "title": "🍼 유치 발치", "prices": [{ "label": "일반 유치", "value": 22000 }, { "label": "유치 송곳니(X-ray 없이)", "value": 22000 }, { "label": "유치 송곳니(X-ray 포함)", "value": 33000 }, { "label": "유치 송곳니(수술 발치)", "value": 66000 }] },
+            { "title": "⚡ 특수 발치 및 처치", "prices": [{ "label": "치아흡수 - 뿌리 1개", "value": 44000 }, { "label": "치아흡수 - 뿌리 2개", "value": 88000 }, { "label": "치아흡수 - 뿌리 3개", "value": 140000 }, { "label": "함치성낭 제거술", "value": 220000 }] },
+            { "title": "🦷 잔존치근 제거", "prices": [{ "label": "뿌리 1개", "value": 55000 }, { "label": "뿌리 2개", "value": 120000 }, { "label": "구개측(어금니)", "value": 160000 }, { "label": "상악 송곳니", "value": 250000 }, { "label": "하악 송곳니", "value": 300000 }] },
+            { "title": "🍑 잇몸 종양", "prices": [{ "label": "1cm 이하", "value": 110000 }, { "label": "1cm 이상", "value": 220000 }, {"label": "조직검사(1 site)", "value": 170000}]},
+            { "title": "🔬 기타 수술", "prices": [{ "label": "항생제 감수성 검사(1 site)", "value": 143000 }, { "label": "함치성 치낭 제거술", "value": 220000 }] }
+        ],
         "explanation": { "title": "💡 '일반 발치' vs '수술 발치' 꼭! 확인해주세요!", "content": [ "<strong>일반 발치</strong><br>잇몸병으로 치아가 이미 많이 흔들릴 때, 잇몸 절개 없이 비교적 간단하게 발치하는 경우입니다.", "<strong>수술 발치</strong><br>치아 뿌리가 아직 잇몸뼈에 단단히 박혀있을 때, 잇몸을 열고(절개) 치아를 안전하게 조각내어 제거한 뒤, 꼼꼼하게 봉합까지 하는 전문적인 과정입니다. 더 많은 시간과 기술, 재료가 필요합니다." ] }
       },
       "addons": {
-        "costsSmall": {
-          "headerTitle": "💊 우리 댕댕이 회복을 돕는 케어 비용 💊",
-          "headerSubtitle": "💖 10kg 미만 아이들을 위한 맞춤 케어 비용 안내 💖",
-          "items": [
-              { "borderColor": "#f06292", "title": "🪄 통증 관리", "prices": [
-                  { "label": "⏰ 마취시간 연장 (30분당)", "value": "45,000 ~ 50,000원" }, 
-                  { "label": "📍 국소마취 (1~4 site)", "value": "10,000 ~ 20,000원" }, 
-                  { "label": "❤️‍🩹 마약성 진통 혈관주사", "value": "20,000 ~ 25,000원" },
-                  { "label": "🕒 24시간 지속 진통 주사", "value": "20,000 ~ 25,000원" },
-                  { "label": "😊 무통 주사 (시린지펌프)", "value": "40,000 ~ 45,000원"}, 
-                  { "label": "🩹 마약성 진통패치 (노스판)", "value": "40,000원 ~" }
-                ]},
-              { "borderColor": "#4dd0e1", "title": "🚀 회복/재생 촉진", "prices": [
-                  { "label": "💉 항생/소염 주사 (일반)", "value": "11,000원" }, 
-                  { "label": "💉 1주 지속 항생/소염 주사", "value": "15,000 ~ 18,000원" }, 
-                  { "label": "⚡️ 레이저 치료 (국소/전체)", "value": "20,000 ~ 28,000원" }, 
-                  { "label": "✨ 불소 도포", "value": "35,000 ~ 40,000원" }
-                ]},
-              { "borderColor": "#9575cd", "title": "🏡 홈케어 처방", "prices": [
-                  { "label": "💊 내복약 (1일/1회/1일분)", "value": "1,900 ~ 2,700원" },
-                  { "label": "💊 내복약 (1일/2회/1일분)", "value": "3,300 ~ 3,800원" }, 
-                  { "label": "💧 액상 진통제 (1ml 당)", "value": "8,000원 ~" }, 
-                  { "label": "🧴 구강항생연고 (페리덱스)", "value": "15,000원" },
-                  { "label": "🛡️ 구강점막코팅 (뮤코딘)", "value": "33,000원" },
-                  { "label": "🌿 치주질환연고 (파로돈겔)", "value": "25,000원" },
-                  { "label": "👑 넥카라", "value": "8,000원 ~" }
-                ]},
-              { "borderColor": "#fff176", "title": "💉 기타 처치", "prices": [
-                  { "label": "💉 도입마취 변경(알팍산)", "value": "33,000 ~ 44,000원" },
-                  { "label": "💧 수액첨가제(헤파멜즈)", "value": "15,000원" }
-                ]}
-          ],
-          "explanation": { "title": "💡 추가 처치는 왜 필요할까요? 🤔", "content": ["우리 댕댕이들은 <strong>\"나 아파요😿\" 라고 말을 못하고 꾹~ 참는 습성</strong>이 있어요. 그래서 미리 통증을 관리해주는 건 아이의 고통을 덜어주는 <strong>가장 큰 사랑이자 배려</strong>랍니다.💖", "또, 항생제나 레이저, 소독 용품들은 수술 후 생길 수 있는 <strong>나쁜 균들을 막아주고 🦠 회복 속도를 높여서⚡️</strong> 아이가 빨리 우다다! 할 수 있게 도와줘요!", "저희 병원은 아이의 상태를 꼼꼼히 살펴, <strong>정말 꼭! 필요한 처치만 골라서 보호자님과 상의</strong>드릴 것을 약속해요.🤙"] }
-        }
+        "headerTitle": "💊 우리 댕댕이 회복을 돕는 케어 비용 💊",
+        "headerSubtitle": "💖 10kg 미만 아이들을 위한 맞춤 케어 비용 안내 💖",
+        "items": [
+            { "borderColor": "#f06292", "title": "🪄 통증 관리", "prices": [
+                { "label": "⏰ 마취시간 연장 (30분당)", "value": "45,000 ~ 50,000원" }, 
+                { "label": "📍 국소마취 (1~4 site)", "value": "10,000 ~ 20,000원" }, 
+                { "label": "❤️‍🩹 마약성 진통 혈관주사", "value": "20,000 ~ 25,000원" },
+                { "label": "🕒 24시간 지속 진통 주사", "value": "20,000 ~ 25,000원" },
+                { "label": "😊 무통 주사 (시린지펌프)", "value": "40,000 ~ 45,000원"}, 
+                { "label": "🩹 마약성 진통패치 (노스판)", "value": "40,000원 ~" }
+              ]},
+            { "borderColor": "#4dd0e1", "title": "🚀 회복/재생 촉진", "prices": [
+                { "label": "💉 항생/소염 주사 (일반)", "value": "11,000원" }, 
+                { "label": "💉 1주 지속 항생/소염 주사", "value": "15,000 ~ 18,000원" }, 
+                { "label": "⚡️ 레이저 치료 (국소/전체)", "value": "20,000 ~ 28,000원" }, 
+                { "label": "✨ 불소 도포", "value": "35,000 ~ 40,000원" }
+              ]},
+            { "borderColor": "#9575cd", "title": "🏡 홈케어 처방", "prices": [
+                { "label": "💊 내복약 (1일/1회/1일분)", "value": "1,900 ~ 2,700원" },
+                { "label": "💊 내복약 (1일/2회/1일분)", "value": "3,300 ~ 3,800원" }, 
+                { "label": "💧 액상 진통제 (1ml 당)", "value": "8,000원 ~" }, 
+                { "label": "🧴 구강항생연고 (페리덱스)", "value": "15,000원" },
+                { "label": "🛡️ 구강점막코팅 (뮤코딘)", "value": "33,000원" },
+                { "label": "🌿 치주질환연고 (파로돈겔)", "value": "25,000원" },
+                { "label": "👑 넥카라", "value": "8,000원 ~" }
+              ]},
+            { "borderColor": "#fff176", "title": "💉 기타 처치", "prices": [
+                { "label": "💉 도입마취 변경(알팍산)", "value": "33,000 ~ 44,000원" },
+                { "label": "💧 수액첨가제(헤파멜즈)", "value": "15,000원" }
+              ]}
+        ],
+        "explanation": { "title": "💡 추가 처치는 왜 필요할까요? 🤔", "content": ["우리 댕댕이들은 <strong>\"나 아파요😿\" 라고 말을 못하고 꾹~ 참는 습성</strong>이 있어요. 그래서 미리 통증을 관리해주는 건 아이의 고통을 덜어주는 <strong>가장 큰 사랑이자 배려</strong>랍니다.💖", "또, 항생제나 레이저, 소독 용품들은 수술 후 생길 수 있는 <strong>나쁜 균들을 막아주고 🦠 회복 속도를 높여서⚡️</strong> 아이가 빨리 우다다! 할 수 있게 도와줘요!", "저희 병원은 아이의 상태를 꼼꼼히 살펴, <strong>정말 꼭! 필요한 처치만 골라서 보호자님과 상의</strong>드릴 것을 약속해요.🤙"] }
       },
       "nerve": {
         "headerTitle": "❤️‍🩹 신경 및 보존 치료 ❤️‍🩹",
@@ -183,90 +169,75 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    try {
-        populateContent(hospitalData);
-    } catch (error) {
-        console.error('데이터 처리 중 오류 발생:', error);
-        alert('콘텐츠를 처리하는 데 실패했습니다. 코드에 문제가 없는지 확인해주세요.');
-    }
-    setupPageNavigation();
-});
-
-const formatPrice = (price) => {
-    if (price === undefined || price === null) return '별도 문의';
-    if (typeof price === 'number') {
+    const formatPrice = (price) => {
+        if (typeof price !== 'number') return price;
         return `💸 ${price.toLocaleString('ko-KR')}원`;
-    }
-    if (typeof price === 'string' && !price.includes('원')) {
-         const num = Number(price);
-         if (!isNaN(num)) {
-            return `💸 ${num.toLocaleString('ko-KR')}원`;
-         }
-    }
-    return price;
-};
+    };
 
-function populateContent(data) {
-    if (!data) return;
-    if (data.main) {
-        document.getElementById('main-header-title').innerHTML = data.main.headerTitle;
-        document.getElementById('main-header-subtitle').innerHTML = data.main.headerSubtitle;
+    function populateMainPage(data) {
+        if (!data) return;
+        document.getElementById('main-header-title').innerHTML = data.headerTitle;
+        document.getElementById('main-header-subtitle').innerHTML = data.headerSubtitle;
+        
         const mainContainer = document.querySelector('#content-main .container > main');
-        if (mainContainer) {
-            const infoGrid = mainContainer.querySelector('.info-grid');
-            infoGrid.innerHTML = `
-                <div class="info-card" style="grid-column:1/-1; border-top:none;">
-                    <h3>${data.main.hours.title}</h3>
-                    <p style="color:#d81b60; font-weight:bold; text-align:center;">${data.main.hours.surgeryNotice}</p>
-                    <ul>${data.main.hours.times.map(h => {
-                        let style = '';
-                        if (h.highlight) style = 'color:#d81b60;font-weight:bold';
-                        if (h.isHoliday) style = 'color:red';
-                        return `<li><strong style="${style}">${h.day}:</strong> ${h.time}</li>`;
-                    }).join('')}</ul>
+        if (!mainContainer) return;
+
+        mainContainer.querySelector('.info-grid').innerHTML = `
+            <div class="info-card" style="grid-column:1/-1; border-top:none;">
+                <h3>${data.hours.title}</h3>
+                <p style="color:#d81b60; font-weight:bold; text-align:center;">${data.hours.surgeryNotice}</p>
+                <ul>${data.hours.times.map(h => {
+                    let style = '';
+                    if (h.highlight) style = 'color:#d81b60;font-weight:bold';
+                    if (h.isHoliday) style = 'color:red';
+                    return `<li style="padding: 4px 0;"><strong style="${style}">${h.day}:</strong> ${h.time}</li>`;
+                }).join('')}</ul>
+            </div>
+        `;
+        
+        document.getElementById('main-pride').innerHTML = `<h2 style="color:#0277bd">${data.pride.title}</h2>` +
+        data.pride.points.map(p => `
+            <div style="margin-bottom: 20px;">
+                <strong style="font-size: 1.2em; color: #0277bd;">${p.title}</strong>
+                <ul style="list-style-type: '✔️ '; padding-left: 20px; margin-top: 10px;">${p.items.map(i => `<li style="margin-bottom: 8px;">${i}</li>`).join('')}</ul>
+            </div>`).join('');
+        
+        document.getElementById('main-notice-title').innerHTML = data.notice.title;
+        document.getElementById('main-notice-list').innerHTML = data.notice.items.map(item => {
+            if(item.type === 'text') return `<li>${item.content}</li>`;
+            if(item.type === 'sublist') return `<li>${item.main}<ul class="sub-list">${item.sublist.map(s => `<li>${s}</li>`).join('')}</ul></li>`;
+            return '';
+        }).join('');
+        
+        const extraInfoHTML = `
+            <section class="info-section" style="margin-top: 30px;">
+                <div class="info-grid">
+                     <div class="info-card" style="grid-column:1/-1; border-top:none;">
+                        <h3>${data.parking.title}</h3>
+                        <ul>${data.parking.content.map(p => `<li style="padding: 4px 0;"><strong ${p.highlight ? 'style="color:#d81b60;font-weight:bold"' : ''}>${p.label}:</strong> ${p.desc}</li>`).join('')}</ul>
+                        <img src="https://raw.githubusercontent.com/ivomec/image/main/parking.png?raw=true" alt="주차장 안내" style="width: 100%; max-width: 800px; margin: 15px auto 0; display: block; border-radius: 10px;">
+                    </div>
                 </div>
-            `;
-            
-            document.getElementById('main-pride').innerHTML = `<h2 style="color:#0277bd">${data.main.pride.title}</h2>` +
-            data.main.pride.points.map(p => `
-                <div style="margin-bottom: 20px;">
-                    <strong style="font-size: 1.2em; color: #0277bd;">${p.title}</strong>
-                    <ul style="list-style-type: '✔️ '; padding-left: 20px; margin-top: 10px;">${p.items.map(i => `<li style="margin-bottom: 8px;">${i}</li>`).join('')}</ul>
-                </div>`).join('');
-            document.getElementById('main-notice-title').innerHTML = data.main.notice.title;
-            document.getElementById('main-notice-list').innerHTML = data.main.notice.items.map(item => {
-                if(item.type === 'text') return `<li>${item.content}</li>`;
-                if(item.type === 'sublist') return `<li>${item.main}<ul class="sub-list">${item.sublist.map(s => `<li>${s}</li>`).join('')}</ul></li>`;
-                return '';
-            }).join('');
-            
-            const parkingAndMapViewHTML = `
-                <section class="info-section" style="margin-top: 30px;">
-                    <div class="info-grid">
-                         <div class="info-card" style="grid-column:1/-1; border-top:none;">
-                            <h3>${data.main.parking.title}</h3>
-                            <ul>${data.main.parking.content.map(p => `<li><strong ${p.highlight ? 'style="color:#d81b60;font-weight:bold"' : ''}>${p.label}:</strong> ${p.desc}</li>`).join('')}</ul>
-                            <img src="https://raw.githubusercontent.com/ivomec/image/main/parking.png?raw=true" alt="주차장 안내" style="width: 100%; max-width: 800px; margin: 15px auto 0; display: block; border-radius: 10px;">
-                        </div>
+            </section>
+            <section class="info-section" style="margin-top: 30px;">
+                <div class="info-grid">
+                    <div class="info-card" style="grid-column:1/-1; border-top:none; padding: 10px;">
+                        <h3>🗺️ 병원 오시는 길 🗺️</h3>
+                        <img src="https://raw.githubusercontent.com/ivomec/image/main/map.jpg?raw=true" alt="병원 지도" style="width: 100%; border-radius: 15px;">
                     </div>
-                </section>
-                <section class="info-section" style="margin-top: 30px;">
-                    <div class="info-grid">
-                        <div class="info-card" style="grid-column:1/-1; border-top:none; padding: 10px;">
-                            <h3>🗺️ 병원 오시는 길 🗺️</h3>
-                            <img src="https://raw.githubusercontent.com/ivomec/image/main/map.jpg?raw=true" alt="병원 지도" style="width: 100%; border-radius: 15px;">
-                        </div>
-                    </div>
-                </section>
-            `;
-            mainContainer.insertAdjacentHTML('beforeend', parkingAndMapViewHTML);
-            document.getElementById('main-footer').innerHTML = `<h2>${data.main.footer.title}</h2>
-                <a href="${data.main.footer.kakaoLink}" target="_blank" class="action-button kakao-btn">💬 카카오톡 채널로 상담하기</a>
-                <a href="${data.main.footer.telLink}" class="action-button tel-btn">📞 ${data.main.contact.phone}</a>`;
-        }
+                </div>
+            </section>
+        `;
+        mainContainer.insertAdjacentHTML('beforeend', extraInfoHTML);
+
+        document.getElementById('main-footer').innerHTML = `<h2>${data.footer.title}</h2>
+            <a href="${data.footer.kakaoLink}" target="_blank" class="action-button kakao-btn">💬 카카오톡 상담</a>
+            <a href="${data.footer.telLink}" class="action-button tel-btn">📞 전화 예약</a>`;
     }
-    if (data.procedure) {
-        document.querySelector('#content-procedure .procedure-timeline').innerHTML = data.procedure.map(item => `
+
+    function populateProcedurePage(data) {
+        if (!data) return;
+        document.querySelector('#content-procedure .procedure-timeline').innerHTML = data.map(item => `
             <div class="timeline-item" data-step="${item.step}">
                 <h3>${item.title}</h3>
                 <div class="timeline-content">${item.content}</div>
@@ -274,36 +245,53 @@ function populateContent(data) {
         `).join('');
     }
 
-    if (data.healthCheck) {
-        const with4dxBtn = document.getElementById('btn-healthcheck-with-4dx-small');
-        const without4dxBtn = document.getElementById('btn-healthcheck-without-4dx-small');
+    function populateHealthCheckPage(data) {
+        if (!data) return;
+        document.getElementById('healthcheck-header-title').innerHTML = data.headerTitle;
+        document.getElementById('healthcheck-header-subtitle').innerHTML = data.headerSubtitle;
         
-        document.getElementById('healthcheck-header-title-small').innerHTML = data.healthCheck.headerTitle;
-        document.getElementById('healthcheck-header-subtitle-small').innerHTML = data.healthCheck.headerSubtitle;
-        const explanationBoxSmall = document.getElementById('healthcheck-explanation-box-small');
-        explanationBoxSmall.innerHTML = `
-            <h2>${data.healthCheck.explanation.title}</h2>
-            <div>${(data.healthCheck.explanation.content || []).map(p => `<p>${p}</p>`).join('')}</div>
+        const explanationBox = document.getElementById('healthcheck-explanation-box');
+        explanationBox.innerHTML = `
+            <h2>${data.explanation.title}</h2>
+            <div>${(data.explanation.content || []).map(p => `<p>${p}</p>`).join('')}</div>
         `;
 
-        renderHealthCheckPackages('small', data.healthCheck.packagesWith4Dx);
+        const with4dxBtn = document.getElementById('btn-healthcheck-with-4dx');
+        const without4dxBtn = document.getElementById('btn-healthcheck-without-4dx');
+
+        const renderPackages = (packages) => {
+            const container = document.getElementById('healthcheck-packages');
+            container.innerHTML = packages.map(pkg => `
+                <div class="package-card" style="border-top-color:${pkg.borderColor}">
+                    <h3 style="color:${pkg.borderColor}">${pkg.title}</h3>
+                    <ul style="list-style: none; padding-left: 0;">${(pkg.items || []).map(item => `<li style="margin-bottom: 10px; font-size: 1.1em;">${item}</li>`).join('')}</ul>
+                    <div class="price-wrapper">
+                        <span class="original-price">${formatPrice(pkg.originalPrice)}</span>
+                        <span class="discount-price heartbeat">❤️ ${pkg.discountPrice.toLocaleString('ko-KR')}원</span>
+                    </div>
+                </div>
+            `).join('');
+        };
         
+        renderPackages(data.packagesWith4Dx); // 기본값
+
         with4dxBtn.addEventListener('click', () => {
-            renderHealthCheckPackages('small', data.healthCheck.packagesWith4Dx);
+            renderPackages(data.packagesWith4Dx);
             with4dxBtn.classList.add('active');
             without4dxBtn.classList.remove('active');
         });
         without4dxBtn.addEventListener('click', () => {
-            renderHealthCheckPackages('small', data.healthCheck.packagesWithout4Dx);
+            renderPackages(data.packagesWithout4Dx);
             without4dxBtn.classList.add('active');
             with4dxBtn.classList.remove('active');
         });
     }
 
-    if (data.scaling) {
-        document.getElementById('scaling-header-title').innerHTML = data.scaling.headerTitle;
-        document.getElementById('scaling-header-subtitle').innerHTML = data.scaling.headerSubtitle;
-        document.getElementById('scaling-packages').innerHTML = data.scaling.packages.map(pkg => `
+    function populateScalingPage(data) {
+        if (!data) return;
+        document.getElementById('scaling-header-title').innerHTML = data.headerTitle;
+        document.getElementById('scaling-header-subtitle').innerHTML = data.headerSubtitle;
+        document.getElementById('scaling-packages').innerHTML = data.packages.map(pkg => `
             <div class="package-card" style="border-top-color:${pkg.borderColor}">
                 <h3 style="color:${pkg.borderColor}">${pkg.title}</h3>
                 <ul style="list-style: none; padding-left: 0;">${(pkg.items || []).map(item => `<li style="margin-bottom: 10px; font-size: 1.1em;">${item}</li>`).join('')}</ul>
@@ -313,46 +301,34 @@ function populateContent(data) {
                 </div>
             </div>
         `).join('');
-        document.getElementById('scaling-explanation-title').innerHTML = data.scaling.explanation.title;
-        document.getElementById('scaling-explanation-content').innerHTML = (data.scaling.explanation.content || []).map(p => `<p>${p}</p>`).join('');
+        document.getElementById('scaling-explanation-title').innerHTML = data.explanation.title;
+        document.getElementById('scaling-explanation-content').innerHTML = (data.explanation.content || []).map(p => `<p>${p}</p>`).join('');
     }
 
-    if(data.extraction) {
-        const setupExtractionTab = (size, costData) => {
-            document.getElementById(`extraction-header-title-${size}`).innerHTML = data.extraction.headerTitle;
-            document.getElementById(`extraction-header-subtitle-${size}`).innerHTML = costData.headerSubtitle;
-            document.getElementById(`extraction-costs-${size}`).innerHTML = costData.items.map(cost => {
-                const priceInfo = (cost.prices || []).map(p => `<div class="price-item"><span class="price-label">${p.label}</span> <span class="price-value">${formatPrice(p.value)}</span></div>`).join('');
-                return `<div class="cost-card"><h3>${cost.title}</h3><div class="price-wrapper" style="border-top:none;padding-top:0;">${priceInfo}</div></div>`;
-            }).join('');
-            document.getElementById(`extraction-explanation-title-${size}`).innerHTML = data.extraction.explanation.title;
-            document.getElementById(`extraction-explanation-content-${size}`).innerHTML = (data.extraction.explanation.content || []).map(p => `<p>${p}</p>`).join('');
-        };
-        setupExtractionTab('small', data.extraction.costsSmall);
+    function populateSimplePage(contentId, data) {
+        if (!data) return;
+        const page = document.getElementById(contentId);
+        if (!page) return;
+
+        page.querySelector('header h1').innerHTML = data.headerTitle;
+        page.querySelector('header p').innerHTML = data.headerSubtitle;
+        
+        page.querySelector('.cost-grid').innerHTML = data.items.map(cost => {
+            const priceInfo = (cost.prices || []).map(p => `<div class="price-item"><span class="price-label">${p.label}</span> <span class="price-value">${cost.borderColor ? p.value : formatPrice(p.value)}</span></div>`).join('');
+            const borderStyle = cost.borderColor ? `border-top-color:${cost.borderColor}` : '';
+            const titleStyle = cost.borderColor ? `color:${cost.borderColor}` : '';
+            return `<div class="cost-card" style="${borderStyle}"><h3 style="${titleStyle}">${cost.title}</h3><div class="price-wrapper" style="border-top:none;padding-top:0;">${priceInfo}</div></div>`;
+        }).join('');
+        
+        page.querySelector('.explanation-box h2').innerHTML = data.explanation.title;
+        page.querySelector('.explanation-box div').innerHTML = (data.explanation.content || []).map(p => `<p>${p}</p>`).join('');
     }
-  
-    if(data.addons) {
-        const setupAddonsTab = (size, costData) => {
-            document.getElementById(`addons-header-title-${size}`).innerHTML = costData.headerTitle;
-            document.getElementById(`addons-header-subtitle-${size}`).innerHTML = costData.headerSubtitle;
-            document.getElementById(`addons-costs-${size}`).innerHTML = costData.items.map(cost => `
-                <div class="cost-card" style="border-top-color:${cost.borderColor}">
-                    <h3 style="color:${cost.borderColor}">${cost.title}</h3>
-                    <div class="price-wrapper" style="text-align: right; border-top: none; padding-top: 0;">
-                        ${(cost.prices || []).map(p => `<div class="price-item"><span class="price-label">${p.label}</span> <span class="price-value">${p.value}</span></div>`).join('')}
-                    </div>
-                </div>
-            `).join('');
-            document.getElementById(`addons-explanation-title-${size}`).innerHTML = costData.explanation.title;
-            document.getElementById(`addons-explanation-content-${size}`).innerHTML = (costData.explanation.content || []).map(p => `<p>${p}</p>`).join('');
-        };
-        setupAddonsTab('small', data.addons.costsSmall);
-    }
-  
-    if(data.nerve) {
-        document.getElementById('nerve-header-title').innerHTML = data.nerve.headerTitle;
-        document.getElementById('nerve-header-subtitle').innerHTML = data.nerve.headerSubtitle;
-        document.getElementById('nerve-costs').innerHTML = data.nerve.costs.map(cost => `
+
+    function populateNervePage(data) {
+        if (!data) return;
+        document.getElementById('nerve-header-title').innerHTML = data.headerTitle;
+        document.getElementById('nerve-header-subtitle').innerHTML = data.headerSubtitle;
+        document.getElementById('nerve-costs').innerHTML = data.costs.map(cost => `
             <div class="cost-card" style="border-top-color:${cost.borderColor}">
                 <h3 style="color:${cost.borderColor}">${cost.title}</h3>
                 <div class="price-wrapper" style="border-top:none; padding-top:0;">
@@ -360,28 +336,20 @@ function populateContent(data) {
                 </div>
             </div>
         `).join('');
-        document.getElementById('nerve-explanation-title').innerHTML = data.nerve.explanation.title;
-        document.getElementById('nerve-explanation-content').innerHTML = (data.nerve.explanation.content || []).map(p => `<p>${p}</p>`).join('');
+        document.getElementById('nerve-explanation-title').innerHTML = data.explanation.title;
+        document.getElementById('nerve-explanation-content').innerHTML = (data.explanation.content || []).map(p => `<p>${p}</p>`).join('');
     }
-}
 
-function renderHealthCheckPackages(size, packages) {
-    const containerId = `healthcheck-packages-${size}`;
-    const healthPackagesContainer = document.getElementById(containerId);
-    if (!healthPackagesContainer) return;
-    healthPackagesContainer.innerHTML = packages.map(pkg => `
-        <div class="package-card" style="border-top-color:${pkg.borderColor}">
-            <h3 style="color:${pkg.borderColor}">${pkg.title}</h3>
-            <ul style="list-style: none; padding-left: 0;">${(pkg.items || []).map(item => `<li style="margin-bottom: 10px; font-size: 1.1em;">${item}</li>`).join('')}</ul>
-            <div class="price-wrapper">
-                <span class="original-price">${formatPrice(pkg.originalPrice)}</span>
-                <span class="discount-price heartbeat">❤️ ${pkg.discountPrice.toLocaleString('ko-KR')}원</span>
-            </div>
-        </div>
-    `).join('');
-}
+    // 데이터 채우기 실행
+    populateMainPage(hospitalData.main);
+    populateProcedurePage(hospitalData.procedure);
+    populateHealthCheckPage(hospitalData.healthCheck);
+    populateScalingPage(hospitalData.scaling);
+    populateSimplePage('content-extraction', hospitalData.extraction);
+    populateSimplePage('content-addons', hospitalData.addons);
+    populateNervePage(hospitalData.nerve);
 
-function setupPageNavigation() {
+    // 네비게이션 설정
     const navTabs = document.querySelectorAll('.nav-tab');
     const contentPanels = document.querySelectorAll('.content-panel');
 
@@ -398,6 +366,7 @@ function setupPageNavigation() {
         if (activeTab) {
             activeTab.classList.add('active');
         }
+        window.scrollTo(0, 0); // 탭 변경 시 맨 위로 스크롤
     }
 
     navTabs.forEach(tab => {
@@ -408,5 +377,22 @@ function setupPageNavigation() {
         });
     });
 
-    showContent('content-main'); // 초기 페이지 설정
-}
+    // 초기 로딩 시 '병원소개' 활성화
+    showContent('content-main');
+});```
+
+### 사용 안내
+
+1.  **파일 생성**: `index.html`과 `script.js` 두 개의 파일을 생성하고, 위 코드를 각각 복사하여 붙여넣습니다.
+2.  **파일 위치**: 두 파일을 같은 폴더 안에 저장합니다.
+3.  **실행**: `index.html` 파일을 웹 브라우저(Chrome, Safari 등)에서 열면 대시보드가 나타납니다.
+
+### 주요 변경사항
+
+*   **콘텐츠 필터링**: `건강검진`, `스케일링`, `수술비용`, `추가처치` 탭의 내용이 모두 **10kg 미만 강아지 기준**으로 수정되었습니다. 10kg 이상 관련 데이터는 Javascript 코드에서 완전히 제거되었습니다.
+*   **탭 제거**: `치료비 계산기`, `예상비용 안내`, `보호자용 치료내역` 탭이 네비게이션과 HTML 구조에서 삭제되었습니다.
+*   **반응형 탭 메뉴**: 화면 너비가 768px 이하(일반적인 모바일/태블릿)일 경우, 상단에 있던 탭 메뉴가 화면 하단에 고정된 스크롤 가능한 메뉴로 자동 변경됩니다. PC에서는 기존처럼 상단에 표시됩니다.
+*   **영상 설명 추가**: `수술 과정`과 `건강검진` 탭에 있던 유튜브 영상 링크 위에 어떤 내용의 영상인지 알 수 있는 친절한 안내 문구를 추가했습니다.
+*   **코드 단순화**: 10kg 이상 관련 로직이 제거되면서 Javascript 코드가 더 간결하고 명확해졌습니다.
+
+이제 이 두 파일만 있으면 10kg 미만 강아지 보호자님들을 위한 완벽한 맞춤형 대시보드가 완성됩니다
