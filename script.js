@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "explanation": { "title": "💡 필독! 혜택 적용 비용 안내 💡", "content": [ "저희 금호동물병원에서는 아이의 <strong>안전을 💖최우선💖</strong>으로 생각해요. 그래서 최근 <strong>✅ 저희 병원에서 직접 마취 전 혈액검사</strong>를 진행해서, 아이의 건강 상태를 저희 의료진이 완벽하게 파악하고 있는 경우! 감사의 마음을 담아 <strong>👑혜택가👑</strong>를 적용해 드리고 있답니다.", "다른 병원에서 검사를 받으셨거나 사정상 검사를 못 하셨어도 괜찮아요! 물론 안전한 치과 치료가 가능합니다. 다만, 이 경우 <strong>10만원이 추가</strong>되는 점, 보호자님의 너른 양해를 부탁드려요. 🙏", "<strong>🚨 잠깐!</strong> 안내된 비용은 스케일링과 기본 처치 비용이에요. 아이의 구강 상태에 따라 발치, 신경치료, 약 처방 등 추가 치료가 필요할 수 있어요. 이 경우, 꼭! <strong>보호자님과 충분히 상의 후 진행</strong>하니 걱정 마세요! 😉" ] }
       },
       "extraction": {
-        "headerTitle": "🦷😿 우리 댕댕이 아픈 치아 수술비용 😿🦷",
+        "headerTitle": "🦷😿 우리 댕댕이 아픈 치아 발치 비용 😿🦷",
         "headerSubtitle": "❤️ 아이의 고통을 덜어주는 수술 비용을 투명하게 안내해요 (<10kg) ❤️",
         "items": [
             { "title": "🦷 기본 발치", "prices": [{ "label": "뿌리 1개", "value": 22000 }, { "label": "뿌리 2개(작은 어금니)", "value": 66000 }, { "label": "뿌리 3개, 대구치", "value": 88000 }, {"label": "열육치(PM4)", "value": 88000}] },
@@ -176,15 +176,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function populateMainPage(data) {
         if (!data) return;
-        document.getElementById('main-header-title').innerHTML = data.headerTitle;
-        document.getElementById('main-header-subtitle').innerHTML = data.headerSubtitle;
-        
-        const mainContainer = document.querySelector('#content-main .container > main');
-        if (!mainContainer) return;
+        const page = document.getElementById('content-main');
+        if (!page) return;
 
-        const infoGrid = mainContainer.querySelector('.info-grid');
+        page.querySelector('#main-header-title').innerHTML = data.headerTitle;
+        page.querySelector('#main-header-subtitle').innerHTML = data.headerSubtitle;
+        
+        const infoGrid = page.querySelector('.info-grid');
         if (infoGrid) {
-            infoGrid.innerHTML = `
+            const hoursHTML = `
                 <div class="info-card" style="grid-column:1/-1; border-top:none;">
                     <h3>${data.hours.title}</h3>
                     <p style="color:#d81b60; font-weight:bold; text-align:center;">${data.hours.surgeryNotice}</p>
@@ -196,17 +196,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     }).join('')}</ul>
                 </div>
             `;
+            infoGrid.innerHTML = hoursHTML;
         }
         
-        document.getElementById('main-pride').innerHTML = `<h2 style="color:#0277bd">${data.pride.title}</h2>` +
+        page.querySelector('#main-pride').innerHTML = `<h2 style="color:#0277bd">${data.pride.title}</h2>` +
         data.pride.points.map(p => `
             <div style="margin-bottom: 20px;">
                 <strong style="font-size: 1.2em; color: #0277bd;">${p.title}</strong>
                 <ul style="list-style-type: '✔️ '; padding-left: 20px; margin-top: 10px;">${p.items.map(i => `<li style="margin-bottom: 8px;">${i}</li>`).join('')}</ul>
             </div>`).join('');
         
-        document.getElementById('main-notice-title').innerHTML = data.notice.title;
-        document.getElementById('main-notice-list').innerHTML = data.notice.items.map(item => {
+        page.querySelector('#main-notice-title').innerHTML = data.notice.title;
+        page.querySelector('#main-notice-list').innerHTML = data.notice.items.map(item => {
             if(item.type === 'text') return `<li>${item.content}</li>`;
             if(item.type === 'sublist') return `<li>${item.main}<ul class="sub-list">${item.sublist.map(s => `<li>${s}</li>`).join('')}</ul></li>`;
             return '';
@@ -231,9 +232,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </section>
         `;
-        mainContainer.insertAdjacentHTML('beforeend', extraInfoHTML);
+        page.querySelector('main').insertAdjacentHTML('beforeend', extraInfoHTML);
 
-        document.getElementById('main-footer').innerHTML = `<h2>${data.footer.title}</h2>
+        page.querySelector('#main-footer').innerHTML = `<h2>${data.footer.title}</h2>
             <a href="${data.footer.kakaoLink}" target="_blank" class="action-button kakao-btn">💬 카카오톡 상담</a>
             <a href="${data.footer.telLink}" class="action-button tel-btn">📞 전화 예약</a>`;
     }
@@ -388,6 +389,11 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
             const targetId = tab.dataset.target;
             showContent(targetId);
+            
+            // 모바일에서 탭 클릭 시 해당 탭이 중앙에 오도록 스크롤
+            if (window.innerWidth <= 768) {
+                tab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            }
         });
     });
 
