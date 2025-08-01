@@ -31,7 +31,7 @@
             padding: 15px; 
         }
 
-        /* --- 대시보드 탭 네비게이션 기본 스타일 --- */
+        /* --- 대시보드 탭 네비게이션 기본 스타일 (PC용) --- */
         .dashboard-nav {
             display: flex;
             flex-wrap: wrap;
@@ -149,8 +149,10 @@
         /* --- 반응형: 모바일 화면 (768px 이하) --- */
         @media (max-width: 768px) {
             body {
+                /* 하단 네비게이션이 콘텐츠를 가리지 않도록 body에 패딩 추가 */
                 padding-bottom: var(--nav-height-mobile); 
             }
+            /* 하단 네비게이션 바 스타일 */
             .dashboard-nav {
                 position: fixed;
                 bottom: 0;
@@ -178,6 +180,7 @@
                  flex-shrink: 0;
             }
             .container {
+                /* 마지막 콘텐츠가 네비게이션에 가려지지 않도록 */
                 margin-bottom: var(--nav-height-mobile);
             }
             .info-page header h1 { font-size: 2em; }
@@ -187,38 +190,25 @@
         /* --- 모바일 하단 네비게이션 스크롤 힌트 스타일 --- */
         @media (max-width: 768px) {
             .dashboard-nav {
-                /* 그라데이션 효과를 위한 position 기준 설정 */
                 position: relative; 
             }
-
-            /* 오른쪽 끝에 그라데이션 및 화살표 추가 */
             .dashboard-nav::after {
-                content: '›'; /* 홑화살표 아이콘 */
+                content: '›';
                 position: absolute;
                 right: 0;
                 top: 0;
                 height: 100%;
-                width: 50px; /* 힌트 영역의 너비 */
-                
-                /* 오른쪽 끝을 배경색으로 덮어 자연스럽게 보이게 함 */
+                width: 50px;
                 background: linear-gradient(to right, rgba(255, 255, 255, 0), #ffffff 50%);
-                
-                /* 텍스트(화살표) 스타일 */
                 color: #888;
                 font-size: 36px;
                 font-weight: bold;
                 text-align: right;
                 padding-right: 5px;
-                line-height: var(--nav-height-mobile); /* 세로 중앙 정렬 */
-
-                /* 사용자가 힌트 영역을 클릭하는 것을 방지 */
-                pointer-events: none; 
-
-                /* 스크롤 유도 애니메이션 */
+                line-height: var(--nav-height-mobile);
+                pointer-events: none;
                 animation: bounce-right 1.5s infinite;
             }
-
-            /* 화살표가 부드럽게 좌우로 움직이는 애니메이션 */
             @keyframes bounce-right {
                 0%, 100% {
                     transform: translateX(0);
@@ -247,6 +237,8 @@
 
     <div class="dashboard-content">
 
+        <!-- 나머지 content-panel 들은 변경 사항이 없으므로 생략합니다. -->
+        <!-- 이전 코드와 동일한 내용을 유지하시면 됩니다. -->
         <div id="content-main" class="content-panel active info-page">
             <div class="container">
                 <header>
