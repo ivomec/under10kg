@@ -182,18 +182,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const mainContainer = document.querySelector('#content-main .container > main');
         if (!mainContainer) return;
 
-        mainContainer.querySelector('.info-grid').innerHTML = `
-            <div class="info-card" style="grid-column:1/-1; border-top:none;">
-                <h3>${data.hours.title}</h3>
-                <p style="color:#d81b60; font-weight:bold; text-align:center;">${data.hours.surgeryNotice}</p>
-                <ul>${data.hours.times.map(h => {
-                    let style = '';
-                    if (h.highlight) style = 'color:#d81b60;font-weight:bold';
-                    if (h.isHoliday) style = 'color:red';
-                    return `<li style="padding: 4px 0;"><strong style="${style}">${h.day}:</strong> ${h.time}</li>`;
-                }).join('')}</ul>
-            </div>
-        `;
+        const infoGrid = mainContainer.querySelector('.info-grid');
+        if (infoGrid) {
+            infoGrid.innerHTML = `
+                <div class="info-card" style="grid-column:1/-1; border-top:none;">
+                    <h3>${data.hours.title}</h3>
+                    <p style="color:#d81b60; font-weight:bold; text-align:center;">${data.hours.surgeryNotice}</p>
+                    <ul>${data.hours.times.map(h => {
+                        let style = '';
+                        if (h.highlight) style = 'color:#d81b60;font-weight:bold';
+                        if (h.isHoliday) style = 'color:red';
+                        return `<li style="padding: 4px 0;"><strong style="${style}">${h.day}:</strong> ${h.time}</li>`;
+                    }).join('')}</ul>
+                </div>
+            `;
+        }
         
         document.getElementById('main-pride').innerHTML = `<h2 style="color:#0277bd">${data.pride.title}</h2>` +
         data.pride.points.map(p => `
@@ -237,12 +240,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function populateProcedurePage(data) {
         if (!data) return;
-        document.querySelector('#content-procedure .procedure-timeline').innerHTML = data.map(item => `
-            <div class="timeline-item" data-step="${item.step}">
-                <h3>${item.title}</h3>
-                <div class="timeline-content">${item.content}</div>
-            </div>
-        `).join('');
+        const timeline = document.querySelector('#content-procedure .procedure-timeline');
+        if (timeline) {
+            timeline.innerHTML = data.map(item => `
+                <div class="timeline-item" data-step="${item.step}">
+                    <h3>${item.title}</h3>
+                    <div class="timeline-content">${item.content}</div>
+                </div>
+            `).join('');
+        }
     }
 
     function populateHealthCheckPage(data) {
@@ -251,17 +257,19 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('healthcheck-header-subtitle').innerHTML = data.headerSubtitle;
         
         const explanationBox = document.getElementById('healthcheck-explanation-box');
-        explanationBox.innerHTML = `
-            <h2>${data.explanation.title}</h2>
-            <div>${(data.explanation.content || []).map(p => `<p>${p}</p>`).join('')}</div>
-        `;
+        if (explanationBox) {
+            explanationBox.innerHTML = `
+                <h2>${data.explanation.title}</h2>
+                <div>${(data.explanation.content || []).map(p => `<p>${p}</p>`).join('')}</div>
+            `;
+        }
 
         const with4dxBtn = document.getElementById('btn-healthcheck-with-4dx');
         const without4dxBtn = document.getElementById('btn-healthcheck-without-4dx');
+        const container = document.getElementById('healthcheck-packages');
 
         const renderPackages = (packages) => {
-            const container = document.getElementById('healthcheck-packages');
-            if (!container) return;
+            if (!container || !packages) return;
             container.innerHTML = packages.map(pkg => `
                 <div class="package-card" style="border-top-color:${pkg.borderColor}">
                     <h3 style="color:${pkg.borderColor}">${pkg.title}</h3>
@@ -276,82 +284,75 @@ document.addEventListener('DOMContentLoaded', () => {
         
         renderPackages(data.packagesWith4Dx); // 기본값
 
-        with4dxBtn.addEventListener('click', () => {
-            renderPackages(data.packagesWith4Dx);
-            with4dxBtn.classList.add('active');
-            without4dxBtn.classList.remove('active');
-        });
-        without4dxBtn.addEventListener('click', () => {
-            renderPackages(data.packagesWithout4Dx);
-            without4dxBtn.classList.add('active');
-            with4dxBtn.classList.remove('active');
-        });
+        if (with4dxBtn && without4dxBtn) {
+            with4dxBtn.addEventListener('click', () => {
+                renderPackages(data.packagesWith4Dx);
+                with4dxBtn.classList.add('active');
+                without4dxBtn.classList.remove('active');
+            });
+            without4dxBtn.addEventListener('click', () => {
+                renderPackages(data.packagesWithout4Dx);
+                without4dxBtn.classList.add('active');
+                with4dxBtn.classList.remove('active');
+            });
+        }
     }
 
     function populateScalingPage(data) {
         if (!data) return;
         document.getElementById('scaling-header-title').innerHTML = data.headerTitle;
         document.getElementById('scaling-header-subtitle').innerHTML = data.headerSubtitle;
-        document.getElementById('scaling-packages').innerHTML = data.packages.map(pkg => `
-            <div class="package-card" style="border-top-color:${pkg.borderColor}">
-                <h3 style="color:${pkg.borderColor}">${pkg.title}</h3>
-                <ul style="list-style: none; padding-left: 0;">${(pkg.items || []).map(item => `<li style="margin-bottom: 10px; font-size: 1.1em;">${item}</li>`).join('')}</ul>
-                <div class="price-wrapper">
-                    <span class="original-price">${formatPrice(pkg.originalPrice)}</span>
-                    <span class="discount-price pulse">👑 ${pkg.discountPrice.toLocaleString('ko-KR')}원</span>
+        
+        const packagesContainer = document.getElementById('scaling-packages');
+        if (packagesContainer) {
+            packagesContainer.innerHTML = data.packages.map(pkg => `
+                <div class="package-card" style="border-top-color:${pkg.borderColor}">
+                    <h3 style="color:${pkg.borderColor}">${pkg.title}</h3>
+                    <ul style="list-style: none; padding-left: 0;">${(pkg.items || []).map(item => `<li style="margin-bottom: 10px; font-size: 1.1em;">${item}</li>`).join('')}</ul>
+                    <div class="price-wrapper">
+                        <span class="original-price">${formatPrice(pkg.originalPrice)}</span>
+                        <span class="discount-price pulse">👑 ${pkg.discountPrice.toLocaleString('ko-KR')}원</span>
+                    </div>
                 </div>
-            </div>
-        `).join('');
+            `).join('');
+        }
+        
         document.getElementById('scaling-explanation-title').innerHTML = data.explanation.title;
-        document.getElementById('scaling-explanation-content').innerHTML = (data.explanation.content || []).map(p => `<p>${p}</p>`).join('');
-    }
-
-    function populateSimplePage(contentId, data) {
-        if (!data) return;
-        const page = document.getElementById(contentId);
-        if (!page) return;
-
-        page.querySelector('header h1').innerHTML = data.headerTitle;
-        page.querySelector('header p').innerHTML = data.headerSubtitle;
-        
-        page.querySelector('.cost-grid').innerHTML = data.items.map(cost => {
-            const priceInfo = (cost.prices || []).map(p => `<div class="price-item"><span class="price-label">${p.label}</span> <span class="price-value">${cost.borderColor ? p.value : formatPrice(p.value)}</span></div>`).join('');
-            const borderStyle = cost.borderColor ? `border-top-color:${cost.borderColor}` : '';
-            const titleStyle = cost.borderColor ? `color:${cost.borderColor}` : '';
-            return `<div class="cost-card" style="${borderStyle}"><h3 style="${titleStyle}">${cost.title}</h3><div class="price-wrapper" style="border-top:none;padding-top:0;">${priceInfo}</div></div>`;
-        }).join('');
-        
-        const explanationBox = page.querySelector('.explanation-box');
-        if (explanationBox) {
-            const h2 = explanationBox.querySelector('h2');
-            if(h2) h2.innerHTML = data.explanation.title;
-            
-            // 오류 수정: 기존 설명 내용을 지우고 새로운 내용을 담을 div를 추가합니다.
-            let contentDiv = explanationBox.querySelector('.explanation-content-wrapper');
-            if (contentDiv) {
-                contentDiv.remove(); // 이전 내용 삭제
-            }
-            contentDiv = document.createElement('div');
-            contentDiv.className = 'explanation-content-wrapper';
-            contentDiv.innerHTML = (data.explanation.content || []).map(p => `<p>${p}</p>`).join('');
-            explanationBox.appendChild(contentDiv);
+        const scalingExplanationContent = document.getElementById('scaling-explanation-content');
+        if(scalingExplanationContent) {
+            scalingExplanationContent.innerHTML = (data.explanation.content || []).map(p => `<p>${p}</p>`).join('');
         }
     }
 
-    function populateNervePage(data) {
+    function populateCostPage(contentId, data, dataKey = 'items') {
         if (!data) return;
-        document.getElementById('nerve-header-title').innerHTML = data.headerTitle;
-        document.getElementById('nerve-header-subtitle').innerHTML = data.headerSubtitle;
-        document.getElementById('nerve-costs').innerHTML = data.costs.map(cost => `
-            <div class="cost-card" style="border-top-color:${cost.borderColor}">
-                <h3 style="color:${cost.borderColor}">${cost.title}</h3>
-                <div class="price-wrapper" style="border-top:none; padding-top:0;">
-                    ${(cost.prices || []).map(p => `<div class="price-item"><span class="price-label">${p.label}</span> <span class="price-value" style="color:#fa5252;font-size:1.3em">${formatPrice(p.value)}</span></div>`).join('')}
-                </div>
-            </div>
-        `).join('');
-        document.getElementById('nerve-explanation-title').innerHTML = data.explanation.title;
-        document.getElementById('nerve-explanation-content').innerHTML = (data.explanation.content || []).map(p => `<p>${p}</p>`).join('');
+        const page = document.getElementById(contentId);
+        if (!page) return;
+    
+        page.querySelector('header h1').innerHTML = data.headerTitle;
+        page.querySelector('header p').innerHTML = data.headerSubtitle;
+    
+        const costGrid = page.querySelector('.cost-grid');
+        if (costGrid) {
+            costGrid.innerHTML = (data[dataKey] || []).map(cost => {
+                const priceInfo = (cost.prices || []).map(p => {
+                    // addons 페이지처럼 가격이 문자열(범위)인 경우 formatPrice를 적용하지 않음
+                    const displayValue = typeof p.value === 'number' ? formatPrice(p.value) : p.value;
+                    const valueStyle = dataKey === 'costs' ? 'style="color:#fa5252;font-size:1.3em"' : '';
+                    return `<div class="price-item"><span class="price-label">${p.label}</span> <span class="price-value" ${valueStyle}>${displayValue}</span></div>`;
+                }).join('');
+    
+                const borderStyle = cost.borderColor ? `border-top-color:${cost.borderColor}` : '';
+                const titleStyle = cost.borderColor ? `color:${cost.borderColor}` : '';
+                return `<div class="cost-card" style="${borderStyle}"><h3 style="${titleStyle}">${cost.title}</h3><div class="price-wrapper" style="border-top:none;padding-top:0;">${priceInfo}</div></div>`;
+            }).join('');
+        }
+    
+        const explanationTitle = page.querySelector('.explanation-box h2');
+        const explanationContent = page.querySelector('.explanation-box div');
+    
+        if (explanationTitle) explanationTitle.innerHTML = data.explanation.title;
+        if (explanationContent) explanationContent.innerHTML = (data.explanation.content || []).map(p => `<p>${p}</p>`).join('');
     }
 
     // 데이터 채우기 실행
@@ -359,9 +360,11 @@ document.addEventListener('DOMContentLoaded', () => {
     populateProcedurePage(hospitalData.procedure);
     populateHealthCheckPage(hospitalData.healthCheck);
     populateScalingPage(hospitalData.scaling);
-    populateSimplePage('content-extraction', hospitalData.extraction);
-    populateSimplePage('content-addons', hospitalData.addons);
-    populateNervePage(hospitalData.nerve);
+    // 통합된 함수 호출
+    populateCostPage('content-extraction', hospitalData.extraction, 'items');
+    populateCostPage('content-addons', hospitalData.addons, 'items');
+    populateCostPage('content-nerve', hospitalData.nerve, 'costs');
+
 
     // 네비게이션 설정
     const navTabs = document.querySelectorAll('.nav-tab');
@@ -380,7 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (activeTab) {
             activeTab.classList.add('active');
         }
-        window.scrollTo(0, 0); // 탭 변경 시 맨 위로 스크롤
+        window.scrollTo(0, 0);
     }
 
     navTabs.forEach(tab => {
@@ -393,10 +396,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 초기 로딩 시 '병원소개' 활성화
     showContent('content-main');
-});```
-
-### 주요 수정 내용
-
-*   **`populateSimplePage` 함수 수정**: `수술비용(extraction)`과 `추가처치(addons)` 탭의 설명을 표시하는 로직을 수정했습니다. 이제는 HTML 구조에 의존하지 않고, 항상 설명을 담을 새로운 `div`를 만들어서 추가하므로 오류가 발생하지 않습니다.
-
-이제 이 스크립트로 교체하시면 모든 기능이 정상적으로 작동할 것입니다. 다시 한번 불편을 드려 죄송합니다.
+});
