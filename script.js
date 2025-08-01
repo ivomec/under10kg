@@ -261,6 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const renderPackages = (packages) => {
             const container = document.getElementById('healthcheck-packages');
+            if (!container) return;
             container.innerHTML = packages.map(pkg => `
                 <div class="package-card" style="border-top-color:${pkg.borderColor}">
                     <h3 style="color:${pkg.borderColor}">${pkg.title}</h3>
@@ -320,8 +321,21 @@ document.addEventListener('DOMContentLoaded', () => {
             return `<div class="cost-card" style="${borderStyle}"><h3 style="${titleStyle}">${cost.title}</h3><div class="price-wrapper" style="border-top:none;padding-top:0;">${priceInfo}</div></div>`;
         }).join('');
         
-        page.querySelector('.explanation-box h2').innerHTML = data.explanation.title;
-        page.querySelector('.explanation-box div').innerHTML = (data.explanation.content || []).map(p => `<p>${p}</p>`).join('');
+        const explanationBox = page.querySelector('.explanation-box');
+        if (explanationBox) {
+            const h2 = explanationBox.querySelector('h2');
+            if(h2) h2.innerHTML = data.explanation.title;
+            
+            // 오류 수정: 기존 설명 내용을 지우고 새로운 내용을 담을 div를 추가합니다.
+            let contentDiv = explanationBox.querySelector('.explanation-content-wrapper');
+            if (contentDiv) {
+                contentDiv.remove(); // 이전 내용 삭제
+            }
+            contentDiv = document.createElement('div');
+            contentDiv.className = 'explanation-content-wrapper';
+            contentDiv.innerHTML = (data.explanation.content || []).map(p => `<p>${p}</p>`).join('');
+            explanationBox.appendChild(contentDiv);
+        }
     }
 
     function populateNervePage(data) {
@@ -381,18 +395,8 @@ document.addEventListener('DOMContentLoaded', () => {
     showContent('content-main');
 });```
 
-### 사용 안내
+### 주요 수정 내용
 
-1.  **파일 생성**: `index.html`과 `script.js` 두 개의 파일을 생성하고, 위 코드를 각각 복사하여 붙여넣습니다.
-2.  **파일 위치**: 두 파일을 같은 폴더 안에 저장합니다.
-3.  **실행**: `index.html` 파일을 웹 브라우저(Chrome, Safari 등)에서 열면 대시보드가 나타납니다.
+*   **`populateSimplePage` 함수 수정**: `수술비용(extraction)`과 `추가처치(addons)` 탭의 설명을 표시하는 로직을 수정했습니다. 이제는 HTML 구조에 의존하지 않고, 항상 설명을 담을 새로운 `div`를 만들어서 추가하므로 오류가 발생하지 않습니다.
 
-### 주요 변경사항
-
-*   **콘텐츠 필터링**: `건강검진`, `스케일링`, `수술비용`, `추가처치` 탭의 내용이 모두 **10kg 미만 강아지 기준**으로 수정되었습니다. 10kg 이상 관련 데이터는 Javascript 코드에서 완전히 제거되었습니다.
-*   **탭 제거**: `치료비 계산기`, `예상비용 안내`, `보호자용 치료내역` 탭이 네비게이션과 HTML 구조에서 삭제되었습니다.
-*   **반응형 탭 메뉴**: 화면 너비가 768px 이하(일반적인 모바일/태블릿)일 경우, 상단에 있던 탭 메뉴가 화면 하단에 고정된 스크롤 가능한 메뉴로 자동 변경됩니다. PC에서는 기존처럼 상단에 표시됩니다.
-*   **영상 설명 추가**: `수술 과정`과 `건강검진` 탭에 있던 유튜브 영상 링크 위에 어떤 내용의 영상인지 알 수 있는 친절한 안내 문구를 추가했습니다.
-*   **코드 단순화**: 10kg 이상 관련 로직이 제거되면서 Javascript 코드가 더 간결하고 명확해졌습니다.
-
-이제 이 두 파일만 있으면 10kg 미만 강아지 보호자님들을 위한 완벽한 맞춤형 대시보드가 완성됩니다
+이제 이 스크립트로 교체하시면 모든 기능이 정상적으로 작동할 것입니다. 다시 한번 불편을 드려 죄송합니다.
