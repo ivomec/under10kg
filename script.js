@@ -137,10 +137,11 @@ document.addEventListener('DOMContentLoaded', () => {
         "headerSubtitle": "무조건 뽑지 않아요! 💪 소중한 치아를 지켜주는 치료 비용 안내",
         "costs": [
           { "borderColor": "#ffc078", "title": "✨ 살아있는 신경 살리기! (VPT)", "prices": [ 
-              { "label": "송곳니 / 뿌리 1개,2개,3개(1홈)", "value": 450000 },
-              { "label": "뿌리 2개 (2홈)", "value": 550000 }, 
-              { "label": "뿌리 2개, 3개 (3홈)", "value": 660000 }, 
-              { "label": "뿌리 3개 (4홈)", "value": 770000 } 
+              { "label": "🦷 송곳니", "value": 450000 },
+              { "label": "🦷 어금니 (노출된 치수만)", "value": 450000 },
+              { "label": "🦷 어금니 (뿌리 2개 모두)", "value": 660000 },
+              { "label": "🍖 열육치(PM4) (노출된 치수만)", "value": 450000 },
+              { "label": "🍖 열육치(PM4) (뿌리 3개 모두)", "value": 770000 }
             ]},
           { "borderColor": "#ff87c2", "title": "💔 아픈 신경 치료하기 (신경치료)", "prices": [ 
               { "label": "앞이빨", "value": 550000 }, 
